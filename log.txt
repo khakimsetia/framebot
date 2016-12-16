@@ -1,0 +1,5 @@
+16 Desember 2016
++ fungsi global before
+  $bot->before();
++ fungsi global after
+  $bot->after();

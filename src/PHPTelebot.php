@@ -54,6 +54,9 @@ class PHPTelebot
      */
     protected static $version = '1.3';
 
+    private $callback_before;
+    private $callback_after;
+
     /**
      * PHPTelebot Constructor.
      *
@@ -79,6 +82,9 @@ class PHPTelebot
 
         self::$token = $token;
         self::$username = $username;
+
+        $this->callback_before = function () {};
+        $this->callback_after  = function () {};
     }
 
     /**
@@ -206,6 +212,33 @@ class PHPTelebot
         }
     }
 
+    /*
+     * Fungsi Proses Global Before
+     * Perubahan panggilan fungsi global sebelum menjalankan proses
+     */
+
+    public function before($callback)
+    {
+        # cek ricek
+        if (is_callable($callback)) {
+            // call_user_func($callback);
+            $this->callback_before = $callback;
+        }
+    }
+
+    /*
+     * Fungsi Proses Global After
+     * Perubahan panggilan fungsi global, sesudah menjalankan proses
+     */
+
+    public function after($callback)
+    {
+        # cek ricek
+        if (is_callable($callback)) {
+            $this->callback_after = $callback;
+        }
+    }
+
     /**
      * Process the message.
      *
@@ -215,6 +248,8 @@ class PHPTelebot
     {
         $get = self::$getUpdates;
         $run = false;
+
+        call_user_func($this->callback_before);
 
         if (Bot::type() == 'text') {
             $customRegex = false;
@@ -272,6 +307,7 @@ class PHPTelebot
         }
 
         if ($run) {
+
             if (is_callable($call)) {
                 if (!is_array($param)) {
                     $count = count((new ReflectionFunction($call))->getParameters());
@@ -288,8 +324,13 @@ class PHPTelebot
                     return Bot::send('sendMessage', ['text' => $call]);
                 }
             }
+
         }
+
+        call_user_func($this->callback_after);
+
     }
 }
 
 require_once __DIR__.'/Bot.php';
+
