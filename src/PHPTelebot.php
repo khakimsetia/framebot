@@ -165,6 +165,9 @@ class PHPTelebot
         if ($_SERVER['REQUEST_METHOD'] == 'POST' && $_SERVER['CONTENT_TYPE'] == 'application/json') {
             self::$getUpdates = json_decode(file_get_contents('php://input'), true);
             echo $this->process();
+
+            echo "\n ---------- callback_after ----------- \n";
+            call_user_func($this->callback_after);
         } else {
             http_response_code(400);
             throw new Exception('Access not allowed!');
@@ -204,6 +207,9 @@ class PHPTelebot
                         Bot::$debug = '';
                     }
                     $offset = $update['update_id'] + 1;
+
+                    echo "\n ---------- callback_after ----------- \n";
+                    call_user_func($this->callback_after);
                 }
             }
 
@@ -271,8 +277,6 @@ class PHPTelebot
                     } else {
                         $param = isset($matches[1]) ? $matches[1] : '';
                     }
-                    //bugs disisipin pas regex;
-                    call_user_func($this->callback_after);
                     break;
                 }
             }
@@ -328,11 +332,8 @@ class PHPTelebot
             }
 
         }
-
-        echo "\n ---------- callback_after ----------- \n";
-        call_user_func($this->callback_after);
-
     }
 }
 
 require_once __DIR__.'/Bot.php';
+
