@@ -1,3 +1,7 @@
+17 Desember 2016
+- bugs ketika command regex, after gak jalan
+* fix sementara disisipin codenya dalam regex
+
 16 Desember 2016
 + fungsi global before
   $bot->before();

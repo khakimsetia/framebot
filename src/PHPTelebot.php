@@ -271,6 +271,8 @@ class PHPTelebot
                     } else {
                         $param = isset($matches[1]) ? $matches[1] : '';
                     }
+                    //bugs disisipin pas regex;
+                    call_user_func($this->callback_after);
                     break;
                 }
             }
@@ -327,10 +329,10 @@ class PHPTelebot
 
         }
 
+        echo "\n ---------- callback_after ----------- \n";
         call_user_func($this->callback_after);
 
     }
 }
 
 require_once __DIR__.'/Bot.php';
-
