@@ -1,73 +1,41 @@
 <?php
 /**
- * PHPTelebot.php.
+ * FrameBot.php.
  *
- *
- * @author Radya <radya@gmx.com>
- *
- * @link https://github.com/radyakaze/phptelebot
- *
- * @license GPL-3.0
+ * Hasanudin <banghasan@gmail.com>
+ * Telegram @hasanuinhs
+ * 
+ * Fork dari: radyakaze/phptelebot
  */
 
 /**
- * Class PHPTelebot.
+ * Class FrameBot.
  */
-class PHPTelebot
+class FrameBot
 {
-    /**
-     * @var array
-     */
     public static $getUpdates = [];
-    /**
-     * @var array
-     */
     protected $_command = [];
-    /**
-     * @var array
-     */
     protected $_onMessage = [];
-    /**
-     * Bot token.
-     *
-     * @var string
-     */
     public static $token = '';
-    /**
-     * Bot username.
-     *
-     * @var string
-     */
     protected static $username = '';
-
-    /**
-     * Debug.
-     *
-     * @var bool
-     */
     public static $debug = true;
-
-    /**
-     * PHPTelebot version.
-     *
-     * @var string
-     */
-    protected static $version = '1.3';
+    protected static $version = '1.5';
 
     private $callback_before;
     private $callback_after;
 
     /**
-     * PHPTelebot Constructor.
+     * FrameBot Constructor.
      *
      * @param string $token
      * @param string $username
+     * @param callback
      */
     public function __construct($token, $username = '')
     {
         // Check php version
         if (version_compare(phpversion(), '5.4', '<')) {
-            die("PHPTelebot needs to use PHP 5.4 or higher.\n");
+            die("FrameBot needs to use PHP 5.4 or higher.\n");
         }
 
         // Check curl
@@ -137,7 +105,7 @@ class PHPTelebot
     {
         try {
             if (php_sapi_name() == 'cli') {
-                echo 'PHPTelebot version '.self::$version;
+                echo 'FrameBot version '.self::$version;
                 echo "\nMode\t: Long Polling\n";
                 $options = getopt('q', ['quiet']);
                 if (isset($options['q']) || isset($options['quiet'])) {
@@ -166,7 +134,7 @@ class PHPTelebot
             self::$getUpdates = json_decode(file_get_contents('php://input'), true);
             echo $this->process();
 
-            echo "\n ---------- callback_after ----------- \n";
+            //echo "\n ---------- callback_after ----------- \n";
             call_user_func($this->callback_after);
         } else {
             http_response_code(400);
@@ -208,7 +176,7 @@ class PHPTelebot
                     }
                     $offset = $update['update_id'] + 1;
 
-                    echo "\n ---------- callback_after ----------- \n";
+                    // echo "\n ---------- callback_after ----------- \n";
                     call_user_func($this->callback_after);
                 }
             }
@@ -336,4 +304,3 @@ class PHPTelebot
 }
 
 require_once __DIR__.'/Bot.php';
-

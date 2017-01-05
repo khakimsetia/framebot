@@ -5,7 +5,7 @@
  *
  * @author Radya <radya@gmx.com>
  *
- * @link https://github.com/radyakaze/phptelebot
+ * @link https://github.com/radyakaze/FrameBot
  *
  * @license GPL-3.0
  */
@@ -46,7 +46,7 @@ class Bot
 
         $needChatId = ['sendMessage', 'forwardMessage', 'sendPhoto', 'sendAudio', 'sendDocument', 'sendSticker', 'sendVideo', 'sendVoice', 'sendLocation', 'sendVenue', 'sendContact', 'sendChatAction', 'editMessageText', 'editMessageCaption', 'editMessageReplyMarkup', 'sendGame'];
         if (in_array($action, $needChatId) && !isset($data['chat_id'])) {
-            $getUpdates = PHPTelebot::$getUpdates;
+            $getUpdates = FrameBot::$getUpdates;
             if (isset($getUpdates['callback_query'])) {
                 $getUpdates['callback_query'];
             }
@@ -64,7 +64,7 @@ class Bot
 
         $ch = curl_init();
         $options = [
-            CURLOPT_URL => 'https://api.telegram.org/bot'.PHPTelebot::$token.'/'.$action,
+            CURLOPT_URL => 'https://api.telegram.org/bot'.FrameBot::$token.'/'.$action,
             CURLOPT_POST => true,
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_SSL_VERIFYHOST => false,
@@ -89,7 +89,7 @@ class Bot
         $httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         curl_close($ch);
 
-        if (PHPTelebot::$debug && $action != 'getUpdates') {
+        if (FrameBot::$debug && $action != 'getUpdates') {
             self::$debug .= 'Method: '.$action."\n";
             self::$debug .= 'Data: '.str_replace("Array\n", '', print_r($data, true))."\n";
             self::$debug .= 'Response: '.$result."\n";
@@ -119,7 +119,7 @@ class Bot
         }
 
         if (!isset($options['inline_query_id'])) {
-            $get = PHPTelebot::$getUpdates;
+            $get = FrameBot::$getUpdates;
             $data['inline_query_id'] = $get['inline_query']['id'];
         }
 
@@ -141,7 +141,7 @@ class Bot
         $options['text'] = $text;
 
         if (!isset($options['callback_query_id'])) {
-            $get = PHPTelebot::$getUpdates;
+            $get = FrameBot::$getUpdates;
             $options['callback_query_id'] = $get['callback_query']['id'];
         }
 
@@ -174,7 +174,7 @@ class Bot
      */
     public static function message()
     {
-        $get = PHPTelebot::$getUpdates;
+        $get = FrameBot::$getUpdates;
         if (isset($get['message'])) {
             return $get['message'];
         } elseif (isset($get['callback_query'])) {
@@ -199,7 +199,7 @@ class Bot
      */
     public static function type()
     {
-        $getUpdates = PHPTelebot::$getUpdates;
+        $getUpdates = FrameBot::$getUpdates;
 
         if (isset($getUpdates['message']['text'])) {
             return 'text';

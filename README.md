@@ -1,49 +1,58 @@
-# PHPTelebot
-Telegram bot framework written in PHP
+# Framebot
+Telegram bot framework menggunakan bahasa pemrograman PHP, merupakan fork dari PHPTelebot yang sudah disesuaikan untuk kebutuhan sendiri.
 
-## Features
+## Tujuan
 
-* Simple, easy to use.
-* Support Long Polling and Webhook.
+Sebagai bahan ebook III Bot Telegram - Versi Final!
 
-## Requirements
+## Fitur 
+
+* Simple, mudah digunakan.
+* Support Long Polling dan Webhook.
+
+## Tambahan
+
+* Support inisiasi dipergunakan untuk session
+* Support finalisasi untuk akhir aktifitas (penyimpanan session, dll)
+
+## Kebutuhan
 
 - [cURL](http://php.net/manual/en/book.curl.php)
 - PHP 5.4+
-- Telegram Bot API Token - Talk to [@BotFather](https://telegram.me/@BotFather) and generate one.
+- Telegram Bot API Token - diperoleh dari [@BotFather](https://telegram.me/@BotFather).
 
-## Installation
+## Installasi
 
-### Using [Composer](https://getcomposer.org)
+### Menggunakan [Composer](https://getcomposer.org)
 
-To install PHPTelebot with Composer, just add the following to your `composer.json` file:
+Install Framebot dengan Composer, tambahkan file `composer.json` seperti berikut :
 
 ```json
 {
     "require": {
-        "radyakaze/phptelebot": "*"
+        "banghasan/framebot": "*"
     }
 }
 ```
 
-or by running the following command:
+atau jalankan perintah berikut lewat CLI:
 
 ```shell
-composer require radyakaze/phptelebot
+composer require banghasan/framebot
 ```
 
-Composer installs autoloader at `./vendor/autoloader.php`. to include the library in your script, add:
+Composer akan menginstall autoloader di `./vendor/autoloader.php`. Untuk di-include ke codinganmu, tambahkan:
 
 ```php
 require_once 'vendor/autoload.php';
 ```
 
-### Install from source
+### Install dari Sumber Code
 
-Download the PHP library from Github, then include `PHPTelebot.php` in your script:
+Download Framebot ini dari Github, kemudian include `FrameBot.php` in your script:
 
 ```php
-require_once '/path/to/phptelebot/src/PHPTelebot.php';
+require_once '/path/to/phptelebot/src/FrameBot.php';
 ```
 
 
@@ -54,8 +63,8 @@ require_once '/path/to/phptelebot/src/PHPTelebot.php';
 ```php
 <?php
 
-require_once './src/PHPTelebot.php';
-$bot = new PHPTelebot('TOKEN', 'BOT_USERNAME'); // Bot username is optional, its required for handle command that contain username (/command@username) like on a group.
+require_once './src/FrameBot.php';
+$bot = new FrameBot('TOKEN', 'BOT_USERNAME'); // Bot username is optional, its required for handle command that contain username (/command@username) like on a group.
 
 // Simple command
 $bot->cmd('*', 'Hi, human! I am a bot.');
@@ -90,7 +99,7 @@ Then run
 php file.php
 ```
 
-You can also see my other [sample](https://github.com/radyakaze/phptelebot/blob/master/sample.php).
+You can also see my other [sample](https://github.com/radyakaze/FrameBot/blob/master/sample.php).
 
 *NOTE:*
 - If function parameters is more than one, PHPTelebot will split text by space.

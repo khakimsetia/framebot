@@ -1,8 +1,8 @@
 <?php
 
-require_once __DIR__.'/src/PHPTelebot.php';
+require_once __DIR__.'/src/FrameBot.php';
 
-$bot = new PHPTelebot('TOKEN', 'BOT_USERNAME');
+$bot = new FrameBot('TOKEN', 'BOT_USERNAME');
 
 // Simple answer
 $bot->cmd('*', 'Hi, human! I am a bot.');
@@ -50,8 +50,8 @@ $bot->cmd('/upload', function () {
 // inline keyboard
 $bot->cmd('/keyboard', function () {
     $keyboard[] = [
-        ['text' => 'PHPTelebot', 'url' => 'https://github.com/radyakaze/phptelebot'],
-        ['text' => 'Haru bot', 'url' => 'https://telegram.me/harubot'],
+        ['text' => 'PHPTelebot', 'url' => 'https://blog.banghasan.com'],
+        ['text' => 'Gedebug', 'url' => 'https://telegram.me/gedebugbot'],
     ];
     $options = [
         'reply_markup' => ['inline_keyboard' => $keyboard],
