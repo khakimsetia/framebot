@@ -1,5 +1,5 @@
 # Framebot
-Telegram bot framework menggunakan bahasa pemrograman PHP, merupakan fork dari PHPTelebot yang sudah disesuaikan untuk kebutuhan sendiri.
+Telegram bot framework menggunakan bahasa pemrograman PHP, merupakan fork dari **PHPTelebot** yang sudah disesuaikan untuk kebutuhan proyek internal.
 
 ## Tujuan
 
@@ -52,7 +52,7 @@ require_once 'vendor/autoload.php';
 Download Framebot ini dari Github, kemudian include `FrameBot.php` in your script:
 
 ```php
-require_once '/path/to/phptelebot/src/FrameBot.php';
+require_once '/path/to/framebot/src/FrameBot.php';
 ```
 
 
@@ -99,10 +99,10 @@ Then run
 php file.php
 ```
 
-You can also see my other [sample](https://github.com/radyakaze/FrameBot/blob/master/sample.php).
+You can also see my other [sample](https://github.com/banghasan/FrameBot/blob/master/sample.php).
 
 *NOTE:*
-- If function parameters is more than one, PHPTelebot will split text by space.
+- If function parameters is more than one, FrameBot will split text by space.
 - If you don't set chat_id on options bot will send message to current chat.
 - If you add option **reply => true**, bot will reply current message (Only work if you don't set custom chat_id and reply_to_mesage_id).
 
@@ -138,7 +138,7 @@ $bot->cmd('/upload', function () {
 
 ## Events
 
-Use `$bot->on(<event>, <function>)` to handle all possible PHPTelebot events.
+Use `$bot->on(<event>, <function>)` to handle all possible FrameBot events.
 
 To handle inline message, just add:
 ```php
@@ -204,7 +204,7 @@ $bot->regex('/^\/regex (.*) ([0-9])$/i', function($matches) {
 
 ## Methods
 
-### PHPTelebot Methods
+### FrameBot Methods
 ##### `cmd(<command>, <answer>)`
 Handle a command.
 ##### `on(<event>, <answer>)`
@@ -217,7 +217,7 @@ Return [message event](#supported-events) type.
 Get [message properties](https://core.telegram.org/bots/api#message).
 
 ### Telegram Methods
-PHPTelebot use standard [Telegram Bot API](https://core.telegram.org/bots/api#available-methods) method names.
+FrameBot use standard [Telegram Bot API](https://core.telegram.org/bots/api#available-methods) method names.
 ##### `Bot::getMe()` [?](https://core.telegram.org/bots/api#getme)
 A simple method for testing your bot's auth token.
 ##### `Bot::sendMessage(<text>, <options>)` [?](https://core.telegram.org/bots/api#sendmessage)
