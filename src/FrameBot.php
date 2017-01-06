@@ -4,7 +4,7 @@
  *
  * Hasanudin <banghasan@gmail.com>
  * Telegram @hasanuinhs
- * 
+ *
  * Fork dari: radyakaze/phptelebot
  */
 
@@ -51,8 +51,10 @@ class FrameBot
         self::$token = $token;
         self::$username = $username;
 
-        $this->callback_before = function () {};
-        $this->callback_after  = function () {};
+        $this->callback_before = function () {
+        };
+        $this->callback_after = function () {
+        };
     }
 
     /**
@@ -71,6 +73,7 @@ class FrameBot
             $this->_onMessage['text'] = $answer;
         }
     }
+
     /**
      * Events.
      *
@@ -170,7 +173,7 @@ class FrameBot
                         $line = "\n--------------------\n";
                         $outputFormat = "$line %s $update[update_id] $line%s";
                         echo sprintf($outputFormat, 'Query ID :', json_encode($update));
-                        echo sprintf($outputFormat, 'Response for :', Bot::$debug?: $process ?: '--NO RESPONSE--');
+                        echo sprintf($outputFormat, 'Response for :', Bot::$debug ?: $process ?: '--NO RESPONSE--');
                         // reset debug
                         Bot::$debug = '';
                     }
@@ -193,7 +196,7 @@ class FrameBot
 
     public function before($callback)
     {
-        # cek ricek
+        // cek ricek
         if (is_callable($callback)) {
             // call_user_func($callback);
             $this->callback_before = $callback;
@@ -207,7 +210,7 @@ class FrameBot
 
     public function after($callback)
     {
-        # cek ricek
+        // cek ricek
         if (is_callable($callback)) {
             $this->callback_after = $callback;
         }
@@ -281,7 +284,6 @@ class FrameBot
         }
 
         if ($run) {
-
             if (is_callable($call)) {
                 if (!is_array($param)) {
                     $count = count((new ReflectionFunction($call))->getParameters());
@@ -298,7 +300,6 @@ class FrameBot
                     return Bot::send('sendMessage', ['text' => $call]);
                 }
             }
-
         }
     }
 }
