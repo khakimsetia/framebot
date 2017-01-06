@@ -17,7 +17,7 @@ class Bot
 {
     /**
      * Bot response debug.
-     * 
+     *
      * @var string
      */
     public static $debug = '';
@@ -64,11 +64,11 @@ class Bot
 
         $ch = curl_init();
         $options = [
-            CURLOPT_URL => 'https://api.telegram.org/bot'.FrameBot::$token.'/'.$action,
-            CURLOPT_POST => true,
+            CURLOPT_URL            => 'https://api.telegram.org/bot'.FrameBot::$token.'/'.$action,
+            CURLOPT_POST           => true,
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_SSL_VERIFYHOST => false,
-            CURLOPT_SSL_VERIFYPEER => false
+            CURLOPT_SSL_VERIFYPEER => false,
         ];
 
         if (is_array($data)) {
@@ -97,7 +97,6 @@ class Bot
 
         if ($httpcode == 401) {
             throw new Exception('Incorect bot token');
-
             return false;
         } else {
             return $result;
@@ -268,24 +267,24 @@ class Bot
     {
         $param = [];
         $firstParam = [
-            'sendMessage' => 'text',
-            'sendPhoto' => 'photo',
-            'sendVideo' => 'video',
-            'sendAudio' => 'audio',
-            'sendVoice' => 'voice',
-            'sendDocument' => 'document',
-            'sendSticker' => 'sticker',
-            'sendVenue' => 'venue',
-            'sendChatAction' => 'action',
-            'setWebhook' => 'url',
-            'getUserProfilePhotos' => 'user_id',
-            'getFile' => 'file_id',
-            'getChat' => 'chat_id',
-            'leaveChat' => 'chat_id',
+            'sendMessage'           => 'text',
+            'sendPhoto'             => 'photo',
+            'sendVideo'             => 'video',
+            'sendAudio'             => 'audio',
+            'sendVoice'             => 'voice',
+            'sendDocument'          => 'document',
+            'sendSticker'           => 'sticker',
+            'sendVenue'             => 'venue',
+            'sendChatAction'        => 'action',
+            'setWebhook'            => 'url',
+            'getUserProfilePhotos'  => 'user_id',
+            'getFile'               => 'file_id',
+            'getChat'               => 'chat_id',
+            'leaveChat'             => 'chat_id',
             'getChatAdministrators' => 'chat_id',
-            'getChatMembersCount' => 'chat_id',
-            'sendGame' => 'game_short_name',
-            'getGameHighScores' => 'user_id',
+            'getChatMembersCount'   => 'chat_id',
+            'sendGame'              => 'game_short_name',
+            'getGameHighScores'     => 'user_id',
         ];
 
         if (!isset($firstParam[$action])) {

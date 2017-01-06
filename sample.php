@@ -25,7 +25,7 @@ $bot->cmd('/whoami', function () {
     $text = 'You are <b>'.$name.'</b> and your ID is <code>'.$userId.'</code>';
     $options = [
         'parse_mode' => 'html',
-        'reply' => true,
+        'reply'      => true,
     ];
 
     return Bot::sendMessage($text, $options);
@@ -68,9 +68,9 @@ $bot->regex('/\/number ([0-9]+)/i', function ($matches) {
 // Inline
 $bot->on('inline', function ($text) {
     $results[] = [
-        'type' => 'article',
-        'id' => 'unique_id1',
-        'title' => $text,
+        'type'         => 'article',
+        'id'           => 'unique_id1',
+        'title'        => $text,
         'message_text' => 'Lorem ipsum dolor sit amet',
     ];
     $options = [
